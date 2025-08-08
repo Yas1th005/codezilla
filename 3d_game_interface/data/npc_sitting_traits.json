@@ -1,0 +1,11 @@
+{
+  "name": "Mira the Scholar",
+  "personality_traits": ["contemplative", "wise", "patient"],
+  "dialogue_goal": "share knowledge and wisdom",
+  "backstory": "A learned scholar who spends her days reading ancient texts and contemplating the mysteries of the world",
+  "visual_style": "realistic",
+  "voice_style": {
+	"tone": "gentle", 
+	"accent": "scholarly"
+  }
+}

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvn8x7y2qk3wh"]
+
+[ext_resource type="Script" uid="uid://c7j0rlsrax6ef" path="res://scripts/npc.gd" id="1_npc_script"]
+[ext_resource type="PackedScene" uid="uid://dgwal7erohnhh" path="res://character/fff.gltf" id="2_character_model"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_npc_body"]
+height = 200.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5hyqr"]
+margin = 0.0
+radius = 100.0
+
+[node name="NPCCharacter" type="CharacterBody3D"]
+script = ExtResource("1_npc_script")
+greeting_message = "Hello there, traveler! Welcome to our tavern!"
+
+[node name="CharacterModel" parent="." instance=ExtResource("2_character_model")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_npc_body")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("SphereShape3D_5hyqr")
+debug_color = Color(0.39771, 0.601688, 0.28224, 0.42)

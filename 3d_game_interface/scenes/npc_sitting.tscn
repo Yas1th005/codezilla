@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk8yay3qk4l7n"]
+
+[ext_resource type="Script" uid="uid://cs37x60yscmjo" path="res://scripts/npc_sitting.gd" id="1_npc_sitting_script"]
+[ext_resource type="PackedScene" uid="uid://b7gkc8q6s3xb0" path="res://character/sitting.gltf" id="2_character_model"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_npc_body"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vibhc"]
+radius = 100.0
+
+[node name="NPCSitting" type="CharacterBody3D"]
+script = ExtResource("1_npc_sitting_script")
+
+[node name="CharacterModel" parent="." instance=ExtResource("2_character_model")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_npc_body")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3623, -51.6088, 50.6031)
+shape = SubResource("SphereShape3D_vibhc")
+debug_color = Color(0.39771, 0.601688, 0.28224, 0.42)

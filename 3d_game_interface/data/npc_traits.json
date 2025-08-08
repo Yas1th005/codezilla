@@ -1,0 +1,11 @@
+{
+  "name": "Eldrin the Sage",
+  "personality_traits": ["wise", "mysterious", "helpful"],
+  "dialogue_goal": "provide guidance",
+  "backstory": "An ancient sage who has lived in these lands for centuries",
+  "visual_style": "realistic",
+  "voice_style": {
+    "tone": "deep", 
+    "accent": "mystical"
+  }
+}

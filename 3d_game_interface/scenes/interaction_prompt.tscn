@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://c9x8y7z6k5l4m"]
+
+[ext_resource type="Script" path="res://scripts/interaction_prompt.gd" id="1_interaction_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prompt_bg"]
+bg_color = Color(0, 0, 0, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="InteractionPrompt" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_interaction_script")
+
+[node name="PromptContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -25.0
+offset_right = 100.0
+offset_bottom = 25.0
+mouse_filter = 2
+
+[node name="PromptPanel" type="Panel" parent="PromptContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_prompt_bg")
+
+[node name="PromptLabel" type="Label" parent="PromptContainer/PromptPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = -10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Press E to interact"
+horizontal_alignment = 1
+vertical_alignment = 1

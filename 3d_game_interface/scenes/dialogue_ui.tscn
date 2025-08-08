@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8x9y2z3k4l5m"]
+
+[ext_resource type="Script" path="res://scripts/dialogue_ui.gd" id="1_dialogue_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue_bg"]
+bg_color = Color(0, 0, 0, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="DialogueUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_dialogue_script")
+
+[node name="DialogueContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -150.0
+offset_right = 400.0
+offset_bottom = -50.0
+mouse_filter = 2
+
+[node name="DialoguePanel" type="Panel" parent="DialogueContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue_bg")
+
+[node name="DialogueLabel" type="Label" parent="DialogueContainer/DialoguePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "NPC dialogue will appear here..."
+autowrap_mode = 2
+vertical_alignment = 1
