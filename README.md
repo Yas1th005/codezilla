@@ -32,6 +32,7 @@ NPCraft isn't just another NPC generator - it's a **complete AI ecosystem** that
 - 📦 **Export seamlessly** as game-ready assets for any engine
 
 ## Live Demo:
+[![Watch the demo](./image.png)](./codezilla.mp4)
 
 
 ## 🎯 Core Features
