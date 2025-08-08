@@ -19,6 +19,7 @@ interface Message {
 const Chat: React.FC = () => {
   // Load persona data from localStorage
   const [personaData, setPersonaData] = useState<any>(null);
+  const [history, sethistory] = useState<string[]>([]);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState<string>("");
@@ -26,6 +27,10 @@ const Chat: React.FC = () => {
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement }>({});
+
+  const updateHistory = (messages: string) => {
+    sethistory([...history, messages]);
+  };
 
   // Function to get character model path
   const getCharacterModelPath = () => {
@@ -158,6 +163,8 @@ const Chat: React.FC = () => {
                     tone: "friendly",
                     accent: "neutral",
                   },
+                  history: history,
+                  gender: "male",
                 }
               : {
                   name: "Eldrin the Sage",
@@ -170,6 +177,7 @@ const Chat: React.FC = () => {
                     tone: "deep",
                     accent: "mystical",
                   },
+                  history: [],
                 },
             message: inputMessage,
             player_stats: {
@@ -230,7 +238,7 @@ const Chat: React.FC = () => {
         //   fullAudioUrl: fullAudioUrl,
         // },
       };
-
+      updateHistory(npcMessage.text);
       setMessages((prev) => [...prev, npcMessage]);
     } catch (error) {
       console.error("Error sending message:", error);
