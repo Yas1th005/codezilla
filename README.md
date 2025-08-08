@@ -36,6 +36,8 @@ NPCraft isn't just another NPC generator - it's a **complete AI ecosystem** that
 
 ![Demo Image](./web2.jpg)
 
+![Demo Image](./web12.jpg)
+
 ![Demo Image](./image3.png)
 
 [![Watch the demo](./image.png)](./codezilla.mp4)
