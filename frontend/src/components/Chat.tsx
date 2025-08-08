@@ -19,6 +19,7 @@ interface Message {
 const Chat: React.FC = () => {
   // Load persona data from localStorage
   const [personaData, setPersonaData] = useState<any>(null);
+  const [history, sethistory] = useState<string[]>([]);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState<string>("");
@@ -26,6 +27,10 @@ const Chat: React.FC = () => {
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement }>({});
+
+  const updateHistory = (messages: string) => {
+    sethistory([...history, messages]);
+  };
 
   // Function to get character model path
   const getCharacterModelPath = () => {
@@ -42,13 +47,15 @@ const Chat: React.FC = () => {
       "Steelord",
     ];
 
-    // Use persona data to select character, or pick a random one
-    const characterIndex =
-      personaData?.characterIndex ??
-      Math.floor(Math.random() * availableCharacters.length);
-    const selectedCharacter = availableCharacters[characterIndex] || "Barkel";
+    // Use selected_persona from persona data, fallback to "Gloam" if not available
+    const selectedCharacter = personaData?.selected_persona || "Gloam";
 
-    return `/3d/${selectedCharacter}/base_basic_shaded.glb`;
+    // Verify the selected character exists in available characters, fallback to "Gloam"
+    const finalCharacter = availableCharacters.includes(selectedCharacter)
+      ? selectedCharacter
+      : "Gloam";
+
+    return `/3d/${finalCharacter}/base_basic_shaded.glb`;
   };
 
   // Load persona data on component mount
@@ -156,6 +163,8 @@ const Chat: React.FC = () => {
                     tone: "friendly",
                     accent: "neutral",
                   },
+                  history: history,
+                  gender: "male",
                 }
               : {
                   name: "Eldrin the Sage",
@@ -168,6 +177,7 @@ const Chat: React.FC = () => {
                     tone: "deep",
                     accent: "mystical",
                   },
+                  history: [],
                 },
             message: inputMessage,
             player_stats: {
@@ -228,7 +238,7 @@ const Chat: React.FC = () => {
         //   fullAudioUrl: fullAudioUrl,
         // },
       };
-
+      updateHistory(npcMessage.text);
       setMessages((prev) => [...prev, npcMessage]);
     } catch (error) {
       console.error("Error sending message:", error);
@@ -252,7 +262,7 @@ const Chat: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="h-screen bg-black text-white flex flex-col">
       {/* Back Button - Top Left */}
       <div className="absolute top-6 left-6 z-10">
         <Link
@@ -295,9 +305,9 @@ const Chat: React.FC = () => {
       </div>
 
       {/* Main Content - Two Column Layout */}
-      <div className="flex-1 flex max-w-7xl mx-auto w-full">
+      <div className="flex-1 flex max-w-7xl mx-auto w-full min-h-0">
         {/* Left Column - NPC Profile */}
-        <div className="w-1/3 border-r border-gray-800 p-6 flex flex-col">
+        <div className="w-1/3 border-r border-gray-800 p-6 flex flex-col overflow-y-auto">
           <div className="text-center mb-6">
             <h2 className="text-xl font-semibold text-[#fe7cff] font-poppins mb-2">
               {personaData?.npcName || "NPC Character"}
@@ -308,7 +318,7 @@ const Chat: React.FC = () => {
           </div>
 
           {/* 3D Character Model */}
-          <div className="flex-1 flex items-center justify-center p-4">
+          <div className="flex-shrink-0 flex items-center justify-center p-4">
             <div className="w-full max-w-sm h-96 bg-gray-900/30 rounded-lg border border-gray-700 overflow-hidden">
               <Character3D
                 modelPath={getCharacterModelPath()}
@@ -371,7 +381,7 @@ const Chat: React.FC = () => {
         </div>
 
         {/* Right Column - Chat */}
-        <div className="w-2/3 flex flex-col">
+        <div className="w-2/3 flex flex-col h-full">
           {/* Messages Area */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 hide-scrollbar">
             {messages.map((message) => {
@@ -479,7 +489,7 @@ const Chat: React.FC = () => {
           </div>
 
           {/* Input Area */}
-          <div className="border-t border-gray-800 p-4">
+          <div className="border-t border-gray-800 p-4 flex-shrink-0">
             <div className="flex space-x-2">
               <textarea
                 value={inputMessage}

@@ -83,6 +83,13 @@ const Voice: React.FC = () => {
     }
   };
 
+  // Get character image path based on selected persona
+  const getCharacterImagePath = () => {
+    const selectedPersona =
+      generatedPersona.fullPersonaData?.selected_persona || "Gloam";
+    return `/2d/${selectedPersona}.png`;
+  };
+
   // Download persona JSON
   const downloadPersonaJSON = () => {
     if (generatedPersona.fullPersonaData?.generatedResponse) {
@@ -178,6 +185,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
           dialogueGoal,
           sampleText,
           intents,
+          selected_persona: data.selected_persona || "Gloam", // Use selected_persona from API response
           generatedResponse: data,
         },
       });
@@ -305,7 +313,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                       <div className="mb-6 mt-5">
                         <label
                           htmlFor="gameContext"
-                          className="block text-sm font-medium text-gray-300 mb-1 font-poppins"
+                          className="block text-sm font-medium text-[#fe7cff] mb-1 font-poppins"
                         >
                           Game Context
                         </label>
@@ -324,7 +332,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                         <div>
                           <label
                             htmlFor="npcName"
-                            className="block text-sm font-medium text-gray-300 mb-1 font-poppins"
+                            className="block text-sm font-medium text-[#fe7cff] mb-1 font-poppins"
                           >
                             NPC Name *
                           </label>
@@ -342,7 +350,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                         <div>
                           <label
                             htmlFor="npcGender"
-                            className="block text-sm font-medium text-gray-300 mb-1 font-poppins"
+                            className="block text-sm font-medium text-[#fe7cff] mb-1 font-poppins"
                           >
                             Gender
                           </label>
@@ -361,7 +369,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                         <div>
                           <label
                             htmlFor="stageContext"
-                            className="block text-sm font-medium text-gray-300 mb-1 font-poppins"
+                            className="block text-sm font-medium text-[#fe7cff] mb-1 font-poppins"
                           >
                             Stage/Location Context
                           </label>
@@ -379,7 +387,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                         <div>
                           <label
                             htmlFor="npcContext"
-                            className="block text-sm font-medium text-gray-300 mb-1 font-poppins"
+                            className="block text-sm font-medium text-[#fe7cff] mb-1 font-poppins"
                           >
                             NPC Description *
                           </label>
@@ -397,7 +405,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                         <div>
                           <label
                             htmlFor="dialogueGoal"
-                            className="block text-sm font-medium text-gray-300 mb-1 font-poppins"
+                            className="block text-sm font-medium text-[#fe7cff] mb-1 font-poppins"
                           >
                             Dialogue Goal
                           </label>
@@ -415,7 +423,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                         <div>
                           <label
                             htmlFor="sampleText"
-                            className="block text-sm font-medium text-gray-300 mb-1 font-poppins"
+                            className="block text-sm font-medium text-[#fe7cff] mb-1 font-poppins"
                           >
                             Sample Dialogue
                           </label>
@@ -433,7 +441,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                       {/* Personality Traits with Sliders */}
                       <div className="mb-6 space-y-4">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-sm font-medium text-gray-300 font-poppins">
+                          <h3 className="text-sm font-medium text-[#fe7cff] font-poppins">
                             Personality Traits
                           </h3>
                           <button
@@ -480,7 +488,7 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                             {trait.trait && (
                               <>
                                 <div className="flex items-center justify-between">
-                                  <label className="text-xs font-medium text-gray-400 font-poppins capitalize">
+                                  <label className="text-xs font-medium text-[#fe7cff] font-poppins capitalize">
                                     {trait.trait} Intensity
                                   </label>
                                   <span className="text-xs text-[#fe7cff] font-poppins">
@@ -627,8 +635,11 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                                 <div className="flex flex-col items-center">
                                   <div className="w-64 h-64 bg-gray-800 border-2 border-[#fe7cff] rounded-lg overflow-hidden relative group">
                                     <img
-                                      src="/image.jpg"
-                                      alt="Kael the Blacksmith"
+                                      src={getCharacterImagePath()}
+                                      alt={
+                                        generatedPersona.npcName ||
+                                        "NPC Character"
+                                      }
                                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                       onError={(e) => {
                                         console.error(
@@ -641,7 +652,8 @@ Sample Dialogue: "${data.sample_dialogue}"`;
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                     <div className="absolute bottom-2 left-2 right-2 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                       <span className="text-xs text-[#fe7cff] font-poppins bg-black bg-opacity-70 px-2 py-1 rounded">
-                                        Kael the Blacksmith
+                                        {generatedPersona.fullPersonaData
+                                          ?.selected_persona || "Gloam"}
                                       </span>
                                     </div>
                                   </div>
