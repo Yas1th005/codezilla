@@ -15,7 +15,7 @@
 
 _Revolutionizing game development with context-aware, voice-enabled NPCs that adapt to player behavior in real-time_
 
-[🚀 Live Demo](https://npc-rafter.vercel.app/) • [📖 Documentation](#documentation) • [🎯 Features](#features) • [🛠️ Installation](#installation)
+[🚀 Live Demo](https://npcraft.vercel.app/) • [📖 Documentation](#documentation) • [🎯 Features](#features) • [🛠️ Installation](#installation)
 
 </div>
 
@@ -32,7 +32,17 @@ NPCraft isn't just another NPC generator - it's a **complete AI ecosystem** that
 - 📦 **Export seamlessly** as game-ready assets for any engine
 
 ## Live Demo:
+![Demo Image](./web.jpg)
+
+![Demo Image](./web2.jpg)
+
+![Demo Image](./image3.png)
+
 [![Watch the demo](./image.png)](./codezilla.mp4)
+
+![Demo Image](./image1.png)
+
+![Demo Image](./image2.png)
 
 
 ## 🎯 Core Features
@@ -73,32 +83,7 @@ NPCraft isn't just another NPC generator - it's a **complete AI ecosystem** that
 - **Visual Character Display**: Character portraits and 3D models during conversations
 
 ## 🏗️ Architecture Overview
-
-```mermaid
-graph TB
-    A[React Frontend] --> B[FastAPI Backend]
-    B --> C[Groq LLM]
-    B --> D[OpenAI TTS]
-    B --> E[Character Database]
-    F[Godot 3D Engine] --> G[Game Assets]
-    A --> H[3D Model Viewer]
-    B --> I[Audio Generation]
-
-    subgraph "AI Services"
-        C
-        D
-    end
-
-    subgraph "Game Integration"
-        F
-        G
-    end
-
-    subgraph "User Interface"
-        A
-        H
-    end
-```
+![Architecture Flowchart](./flowchart.png)
 
 ## 🛠️ Technology Stack
 
