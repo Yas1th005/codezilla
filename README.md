@@ -352,7 +352,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact & Support
 
-- **Demo**: [https://npc-rafter.vercel.app/](https://npc-rafter.vercel.app/)
+- **Demo**: [https://npcraft.vercel.app/](https://npc-rafter.vercel.app/)
 - **Documentation**: [API Docs](https://npc-rafter.vercel.app/docs)
 - **Issues**: [GitHub Issues](https://github.com/your-username/npcraft/issues)
 - **Discord**: [Join our community](https://discord.gg/npcraft)
