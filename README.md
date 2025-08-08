@@ -31,6 +31,9 @@ NPCraft isn't just another NPC generator - it's a **complete AI ecosystem** that
 - 🎨 **Look unique** with AI-selected visual personas and 3D models
 - 📦 **Export seamlessly** as game-ready assets for any engine
 
+## Live Demo:
+
+
 ## 🎯 Core Features
 
 ### 🤖 AI-Powered Character Generation
